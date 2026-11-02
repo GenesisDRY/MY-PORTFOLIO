@@ -1,819 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>De Raya Portfolio</title>
-
+    <meta name="theme-color" content="#f6f3fb">
+    <meta name="description" content="A student portfolio featuring class activities, projects, and skills.">
+    <title>My Portfolio</title>
     <link rel="stylesheet" href="portfolio.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #08080c;
-            color: white;
-        }
-
-        nav {
-            height: 75px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 42px;
-            background: #0b0b0f;
-            border-bottom: 1px solid #292930;
-        }
-
-        nav a {
-            color: #888891;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: bold;
-            padding-bottom: 9px;
-            border-bottom: 2px solid transparent;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: white;
-        }
-
-        nav a.active {
-            color: white;
-            border-bottom-color: #a88cff;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .active-page {
-            display: block;
-        }
-
-        .home {
-            min-height: calc(100vh - 75px);
-            display: flex;
-        }
-
-        .text {
-            width: 58%;
-            padding: 70px 90px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .title {
-            color: #a88cff;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-
-        .text h1 {
-            margin: 0;
-            font-size: 60px;
-            line-height: 1.05;
-        }
-
-        .text h1 span {
-            color: #a88cff;
-        }
-
-        .text h2 {
-            color: #d6d3e2;
-            font-size: 27px;
-            font-weight: normal;
-            margin: 22px 0 18px;
-        }
-
-        .text p {
-            max-width: 650px;
-            margin: 0;
-            color: #8e8e98;
-            font-size: 18px;
-            line-height: 1.7;
-        }
-
-        .social {
-            margin-top: 32px;
-        }
-
-        .social a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 48px;
-            height: 48px;
-            margin-right: 10px;
-            color: #aaa;
-            text-decoration: none;
-            border: 1px solid #34343d;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        .social a:hover {
-            color: white;
-            background: #7655d9;
-            border-color: #7655d9;
-        }
-
-        .profile {
-            width: 42%;
-            background: #47319b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile::before {
-            content: "";
-            position: absolute;
-            width: 430px;
-            height: 430px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 50%;
-            right: -210px;
-            top: -150px;
-        }
-
-        .profile::after {
-            content: "";
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 50%;
-            left: -180px;
-            bottom: -140px;
-        }
-
-        .profile img {
-            width: 320px;
-            height: 420px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid rgba(255,255,255,0.5);
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 65px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h1 {
-            margin: 0;
-            font-size: 48px;
-        }
-
-        .section-title span {
-            color: #a88cff;
-        }
-
-        .section-title p {
-            color: #888891;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-
-        .about-box {
-            background: #111118;
-            border: 1px solid #292930;
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .about-box h2 {
-            margin-top: 0;
-            font-size: 28px;
-        }
-
-        .about-box h2 span {
-            color: #a88cff;
-        }
-
-        .about-box p {
-            color: #999;
-            font-size: 17px;
-            line-height: 1.8;
-            margin-bottom: 18px;
-        }
-
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .skill {
-            background: #111118;
-            border: 1px solid #292930;
-            border-radius: 12px;
-            padding: 30px;
-            transition: 0.3s;
-        }
-
-        .skill:hover {
-            border-color: #7655d9;
-            transform: translateY(-5px);
-        }
-
-        .skill h2 {
-            margin-top: 0;
-            font-size: 25px;
-            color: white;
-        }
-
-        .skill h2 span {
-            color: #a88cff;
-        }
-
-        .skill p {
-            color: #999;
-            font-size: 17px;
-            line-height: 1.8;
-            margin-bottom: 0;
-        }
-
-        .upload-box {
-            background: #111118;
-            border: 1px solid #292930;
-            border-radius: 12px;
-            padding: 35px;
-            max-width: 900px;
-            margin: 0 auto 35px;
-        }
-
-        .upload-box h2 {
-            margin-top: 0;
-            font-size: 28px;
-        }
-
-        .upload-box h2 span {
-            color: #a88cff;
-        }
-
-        .upload-box p {
-            color: #999;
-            font-size: 16px;
-            margin-bottom: 25px;
-        }
-
-        .upload-box input[type="file"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            color: #aaa;
-            background: #08080c;
-            border: 1px solid #292930;
-            border-radius: 6px;
-        }
-
-        .upload-box input[type="text"] {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            color: white;
-            background: #08080c;
-            border: 1px solid #292930;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .upload-box input[type="text"]:focus {
-            border-color: #7655d9;
-        }
-
-        .upload-box button {
-            padding: 12px 20px;
-            background: #7655d9;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .upload-box button:hover {
-            background: #a88cff;
-        }
-
-        .works {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .work {
-            background: #111118;
-            border: 1px solid #292930;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .work:hover {
-            border-color: #7655d9;
-            transform: translateY(-5px);
-        }
-
-        .work-image {
-            width: 100%;
-            height: 230px;
-            background: #47319b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .work-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .work-content {
-            padding: 20px;
-        }
-
-        .work-content h2 {
-            margin: 0;
-            font-size: 21px;
-        }
-
-        .work-content h2 span {
-            color: #a88cff;
-        }
-
-        .delete-button {
-            margin-top: 15px;
-            padding: 9px 15px;
-            background: #292930;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .delete-button:hover {
-            background: #7655d9;
-        }
-
-        @media (max-width: 800px) {
-
-            nav {
-                height: auto;
-                padding: 18px 5px;
-                gap: 18px;
-            }
-
-            nav a {
-                font-size: 10px;
-            }
-
-            .home {
-                flex-direction: column;
-            }
-
-            .text {
-                width: 100%;
-                padding: 55px 25px;
-                text-align: center;
-            }
-
-            .title {
-                font-size: 14px;
-            }
-
-            .text h1 {
-                font-size: 42px;
-            }
-
-            .text h2 {
-                font-size: 21px;
-            }
-
-            .text p {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            .profile {
-                width: 100%;
-                min-height: 430px;
-            }
-
-            .profile img {
-                width: 220px;
-                height: 300px;
-            }
-
-            .container {
-                width: 90%;
-                padding: 50px 0;
-            }
-
-            .section-title h1 {
-                font-size: 38px;
-            }
-
-            .skills {
-                grid-template-columns: 1fr;
-            }
-
-            .works {
-                grid-template-columns: 1fr;
-            }
-
-            .about-box {
-                padding: 25px;
-            }
-
-            .upload-box {
-                padding: 25px;
-            }
-        }
-
-    </style>
-
+    <script src="portfolio.js" defer></script>
 </head>
-
-<script src="portfolio.js"></script>
-
 <body>
+    <header class="site-header">
+        <a class="brand" href="#home" aria-label="My Portfolio home"><span class="brand-mark" aria-hidden="true">✳</span><span class="brand-name">My Portfolio</span></a>
+        <nav aria-label="Portfolio sections">
+            <a href="#home" class="active" aria-current="page">Home</a>
+            <a href="#quiz">Quiz</a>
+            <a href="#laboratory">Laboratory</a>
+            <a href="#exam">Exam</a>
+        </nav>
+    </header>
 
-    <nav>
-
-        <a onclick="showPage('home', this)" class="active">
-            HOME
-        </a>
-
-        <a onclick="showPage('about', this)">
-            ABOUT
-        </a>
-
-        <a onclick="showPage('skills', this)">
-            SKILLS
-        </a>
-
-        <a onclick="showPage('works', this)">
-            MY WORK
-        </a>
-
-    </nav>
-
-    <section id="home" class="page active-page">
-
-        <div class="home">
-
-            <div class="text">
-
-                <h1>
-                    Hi! It's <span>Genesis De Raya</span>
-                </h1>
-
-                <h2>
-                    BSIT-3B
-                </h2>
-
-                <p>
-                    Welcome to my portfolio. I am a BSIT student who
-                    enjoys learning about technology, designing websites,
-                    and improving my skills in the IT industry.
-                </p>
-
-                <div class="social">
-
-                    <a href="https://github.com/GenesisDRY">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-
-                    <a href="#">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-
+    <main>
+        <section id="home" class="page active-page">
+            <div class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="status-dot"></span> BSIT-3B · Creative space</p>
+                    <h1>Learning by doing.<br><span>Creating as I go.</span></h1>
+                    <h2>A little curiosity goes a long way.</h2>
+                    <p class="intro-copy">
+                        I enjoy learning about technology, designing websites, and building
+                        my skills one project at a time. Here are some of the activities
+                        I've worked on during my studies.
+                    </p>
+                    <a class="hero-link" href="#quiz">Take a look around <span aria-hidden="true">↗</span></a>
                 </div>
-
-            </div>
-
-            <div class="profile">
-
-                <img src="Gen.jpg.jpg" alt="Profile">
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section id="about" class="page">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h1>
-                    About <span>Me</span>
-                </h1>
-
-                <p>
-                    Get to know more about me.
-                </p>
-
-            </div>
-
-            <div class="about-box">
-
-                <h2>
-                    My <span>Bio</span>
-                </h2>
-
-                <p>
-                    I'm Genesis De Raya, a BSIT-3B student taking Bachelor of Science in
-                    Information Technology. I am interested in technology and I want to try
-                    and explore new things so I can improve my knowledge and skills in the
-                    IT industry.
-                </p>
-
-                <p>
-                    Outside of school, I enjoy taking care of pets and breeding chickens in
-                    a small setup. I also enjoy playing mobile games because it helps me
-                    relax and reduce stress.
-                </p>
-
-                <p>
-                    I am also interested in other things like networking, and learning how
-                    good design and simple interfaces can make websites more entertaining
-                    and enjoyable to use.
-                </p>
-
-                <p>
-                    My goal is to continue improving my skills and learn more about myself,
-                    especially to discover what I am good at and what I enjoy doing, so I
-                    can use these in my future career and continue gaining more knowledge
-                    in the IT industry.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-<section id="skills" class="page">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h1>
-                My <span>Skills</span>
-            </h1>
-
-            <p>
-                Skills that I am currently learning and developing.
-            </p>
-
-        </div>
-
-        <div class="about-box">
-
-            <h2>
-                My <span>Skills</span>
-            </h2>
-
-            <p>
-                Basic knowledge of HTML, CSS, C#
-            </p>
-
-            <p>
-                Still learning web design and development
-            </p>
-
-            <p>
-                Willing to learn networking and improve my skills
-            </p>
-
-            <p>
-                Still developing my problem-solving skills
-            </p>
-
-            <p>
-                Open to learning new technologies
-            </p>
-
-            <p>
-                Basic Knowledge of Arduino
-            </p>
-
-            <p>
-                Basic Knowledge of Figma
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-<section id="works" class="page">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h1>
-                My <span>Work</span>
-            </h1>
-
-            <p>
-                My previous projects and activities.
-            </p>
-
-        </div>
-
-        <h2 class="my-work-title">
-            My <span>Activities</span>
-        </h2>
-
-        <div class="works" id="projectList">
-
-            <div class="work">
-                <a href="De_Raya_Quiz1.jpg" target="_blank">
-                    <div class="work-image">
+                <div class="hero-art">
+                    <div class="portrait-frame">
+                        <img src="Gen.jpg.jpg" alt="Portfolio owner's portrait">
                     </div>
-                </a>
-                <div class="work-content">
-                    <h2>Quiz <span>1</span></h2>
+                    <span class="portrait-note">Currently learning <span aria-hidden="true">✳</span></span>
                 </div>
             </div>
 
-            <div class="work">
-                <a href="De_Raya_LAB1.pdf" target="_blank">
-                    <div class="work-image">
-                    </div>
-                </a>
-                <div class="work-content">
-                    <h2>LAB <span>1</span></h2>
+            <div class="home-details">
+                <article class="detail-card">
+                    <p class="card-label">01 / About</p>
+                    <h2>Always learning, always curious.</h2>
+                    <p>
+                        I'm a Bachelor of Science in Information Technology student
+                        interested in networking, thoughtful design, and discovering
+                        where technology can take me. Outside of school, I enjoy caring
+                        for pets, breeding chickens, and playing mobile games.
+                    </p>
+                </article>
+                <article class="detail-card skills-card">
+                    <p class="card-label">02 / Things I'm learning</p>
+                    <h2>My growing toolkit</h2>
+                    <ul class="skill-list">
+                        <li>HTML &amp; CSS</li>
+                        <li>C#</li>
+                        <li>Figma</li>
+                        <li>Arduino</li>
+                        <li>Networking</li>
+                        <li>Web design</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="quiz" class="page" hidden>
+            <div class="content-page">
+                <header class="section-heading">
+                    <p class="eyebrow">MY CLASSWORK / 01</p>
+                    <h1>Quiz <span>collection.</span></h1>
+                    <p>A little snapshot of what I've been learning.</p>
+                </header>
+                <div class="works">
+                    <article class="work">
+                        <a class="work-link" href="Activities/Quiz 1.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Quiz 1.jpg" alt="Quiz 1 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Quiz 1</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/Quiz%202.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Quiz%202.jpg" alt="Quiz 2 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Quiz 2</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/Quiz%203.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Quiz%203.jpg" alt="Quiz 3 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Quiz 3</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/Quiz%204.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Quiz%204.jpg" alt="Quiz 4 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Quiz 4</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/Quiz%205.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Quiz%205.jpg" alt="Quiz 5 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Quiz 5</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/Long Quiz 1.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Long Quiz 1.jpg" alt="Long Quiz 1 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Long Quiz 1</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/Long Quiz 2.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/Long Quiz 2.jpg" alt="Long Quiz 2 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Long Quiz 2</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
                 </div>
             </div>
+        </section>
 
-
-             <div class="work">
-                <a href="DeRaya Lab2.pdf" target="_blank">
-                    <div class="work-image">
-                    </div>
-                </a>
-                <div class="work-content">
-                    <h2>LAB <span>2</span></h2>
-                </div>
-            </div> 
-
-             <div class="work">
-                <a href="Prelim.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Prelim Exam <span></span></h2>
-                </div>
-            </div> 
-
-            <div class="work">
-                <a href="Quiz 2.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Quiz <span>2</span></h2>
-                </div>
-            </div> 
-
-            <div class="work">
-                <a href="Quiz 3.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Quiz <span>3</span></h2>
-                </div>
-            </div> 
-
-            <div class="work">
-                <a href="Long Quiz.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Long Quiz<span>1</span></h2>
-                </div>
-            </div> 
-
-            <div class="work">
-                <a href="Lab 3.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Lab<span>3</span></h2>
+        <section id="laboratory" class="page" hidden>
+            <div class="content-page">
+                <header class="section-heading">
+                    <p class="eyebrow">MY CLASSWORK / 02</p>
+                    <h1>Laboratory <span>activities.</span></h1>
+                    <p>Hands-on work and experiments from class.</p>
+                </header>
+                <div class="works">
+                    <article class="work">
+                        <a class="work-link" href="Activities/DeRaya_Lab1.pdf" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image document-image"><span class="document-icon">PDF</span></div>
+                            <div class="work-content"><h2>Lab 1</h2><p>Open PDF document <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/DeRaya_Lab2.pdf" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image document-image"><span class="document-icon">PDF</span></div>
+                            <div class="work-content"><h2>Lab 2</h2><p>Open PDF document <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/DeRaya_Lab3.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/DeRaya_Lab3.jpg" alt="Lab 3 preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Lab 3</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
                 </div>
             </div>
-            
-            <div class="work">
-                <a href="Quiz 4.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Quiz<span>4</span></h2>
-                </div>
-            </div>
+        </section>
 
-            <div class="work">
-                <a href="Quiz 5.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Quiz<span>5</span></h2>
-                </div>
-            </div>
-
-            <div class="work">
-                <a href="Long Quiz 2.jpg" target="_blank">
-                <div class="work-image">
-                </div>
-                </a>
-                <div class="work-content">
-                    <h2>Long Quiz<span>2</span></h2>
+        <section id="exam" class="page" hidden>
+            <div class="content-page">
+                <header class="section-heading">
+                    <p class="eyebrow">MY CLASSWORK / 03</p>
+                    <h1>Exam <span>Collections</span></h1>
+                    <p>My exam activity and class notes.</p>
+                </header>
+                <div class="works">
+                    <article class="work">
+                        <a class="work-link" href="Activities/DeRaya_Prelim.jpg" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/DeRaya_Prelim.jpg" alt="Prelim exam preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Prelim Exam</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
+                    <article class="work">
+                        <a class="work-link" href="Activities/DeRaya_Midterm.png" target="_blank" rel="noopener noreferrer">
+                            <div class="work-image"><img src="Activities/DeRaya_Midterm.png" alt="Midterm exam preview" loading="lazy"></div>
+                            <div class="work-content"><h2>Midterm Exam</h2><p>View full activity <span aria-hidden="true">↗</span></p></div>
+                        </a>
+                    </article>
                 </div>
             </div>
-
-        </div>
-
-    </div>
-
-</section>
-    <script>
-
-        function showPage(pageId, link) {
-
-            let pages = document.querySelectorAll(".page");
-
-            pages.forEach(function(page) {
-                page.classList.remove("active-page");
-            });
-
-            document.getElementById(pageId).classList.add("active-page");
-
-            let links = document.querySelectorAll("nav a");
-
-            links.forEach(function(navLink) {
-                navLink.classList.remove("active");
-            });
-
-            link.classList.add("active");
-
-            window.scrollTo(0, 0);
-        }
-
-    </script>
-
+        </section>
+    </main>
 </body>
-
 </html>
